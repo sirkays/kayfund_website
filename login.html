@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Login &amp; Register | Kayfund International School</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="top-utility">
+            <div class="container top-utility-inner">
+                <span>📍 Opposite MTN Mast, UpZango, Lokoja, Kogi State</span>
+                <span>📞 +234 803 245 7019 &nbsp;|&nbsp; ✉️ info@kayfund.edu.ng</span>
+            </div>
+        </div>
+        <div class="header-main">
+            <a href="index.html" class="brand">
+                <img src="assets/images/logo.png" alt="Kayfund International School Logo" class="brand-logo">
+                <div class="brand-text">
+                    <h1>KAYFUND INTERNATIONAL SCHOOL</h1>
+                    <p>Impacting Lives, Shaping the Future</p>
+                </div>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About Us</a>
+                <a href="academics.html" class="nav-item">Academics</a>
+                <a href="admissions.html" class="nav-item">Admissions</a>
+                <a href="scholarship.html" class="nav-item">Scholarship</a>
+                <a href="results.html" class="nav-item">Check Result</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+                <a href="login.html" id="nav-portal-cta" class="nav-item nav-cta active">Portal Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="card" style="max-width:480px; margin:0 auto;">
+                <div style="text-align:center; margin-bottom:20px;">
+                    <img src="assets/images/logo.png" alt="Kayfund Crest" style="width:86px; height:86px; margin:0 auto 12px; border-radius:50%;">
+                    <h2 style="margin-bottom:4px;">Kayfund Digital Portal</h2>
+                    <p style="color:var(--text-muted); margin:0; font-size:0.9rem;">Sign in or create a new demo account</p>
+                </div>
+
+                <div class="auth-tabs">
+                    <button type="button" class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Sign In</button>
+                    <button type="button" class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Register</button>
+                </div>
+
+                <!-- LOGIN FORM -->
+                <form id="auth-login-form" onsubmit="loginForm(event)">
+                    <div class="form-group">
+                        <label for="log-email">Email Address</label>
+                        <input type="email" id="log-email" placeholder="student@kayfund.edu.ng" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="log-pass">Password</label>
+                        <input type="password" id="log-pass" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="btn btn-gold btn-block">Sign In to Portal</button>
+
+                    <div class="demo-box">
+                        <strong>Quick Demo Accounts:</strong>
+                        <div class="demo-box-actions">
+                            <button type="button" class="btn btn-outline-dark" style="padding:8px 12px; font-size:0.8rem;" onclick="fillDemoCredentials('student')">👨‍🎓 Student Demo</button>
+                            <button type="button" class="btn btn-outline-dark" style="padding:8px 12px; font-size:0.8rem;" onclick="fillDemoCredentials('teacher')">🛡️ Teacher / Admin Demo</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- REGISTER FORM -->
+                <form id="auth-register-form" class="hidden" onsubmit="registerStudentForm(event)">
+                    <div class="form-group">
+                        <label for="reg-role">Account Type</label>
+                        <select id="reg-role" onchange="toggleAdminKeyField()">
+                            <option value="student" selected>Student Account</option>
+                            <option value="teacher">Teacher / Admin Account</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-name">Full Name</label>
+                        <input type="text" id="reg-name" placeholder="e.g. Zainab Bello" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email Address</label>
+                        <input type="email" id="reg-email" placeholder="name@kayfund.edu.ng" required>
+                    </div>
+                    <div class="form-group" id="reg-class-group">
+                        <label for="reg-class">Class Level</label>
+                        <select id="reg-class">
+                            <option value="Primary">Primary School</option>
+                            <option value="JSS 1">JSS 1</option>
+                            <option value="JSS 2">JSS 2</option>
+                            <option value="JSS 3">JSS 3</option>
+                            <option value="SS 1">SS 1</option>
+                            <option value="SS 2" selected>SS 2</option>
+                            <option value="SS 3">SS 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="reg-phone-group">
+                        <label for="reg-phone">Parent WhatsApp Phone</label>
+                        <input type="tel" id="reg-phone" placeholder="2348032457019">
+                    </div>
+                    <div class="form-group hidden" id="reg-admin-key-group">
+                        <label for="reg-admin-key">Teacher Authorization Key (Demo: <code>KAYFUND-ADMIN</code>)</label>
+                        <input type="text" id="reg-admin-key" placeholder="KAYFUND-ADMIN">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-pass">Create Password</label>
+                        <input type="password" id="reg-pass" placeholder="Create password" required>
+                    </div>
+                    <button type="submit" class="btn btn-gold btn-block">Create Account &amp; Enter Portal</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top:none; padding-top:0;">
+                &copy; 2026 Kayfund International School. All Rights Reserved. | Impacting Lives, Shaping the Future.
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        function switchAuthTab(tab) {
+            const loginFormEl = document.getElementById('auth-login-form');
+            const regFormEl = document.getElementById('auth-register-form');
+            const tabLogin = document.getElementById('tab-login');
+            const tabReg = document.getElementById('tab-register');
+
+            if (tab === 'login') {
+                loginFormEl.classList.remove('hidden');
+                regFormEl.classList.add('hidden');
+                tabLogin.classList.add('active');
+                tabReg.classList.remove('active');
+            } else {
+                loginFormEl.classList.add('hidden');
+                regFormEl.classList.remove('hidden');
+                tabLogin.classList.remove('active');
+                tabReg.classList.add('active');
+            }
+        }
+
+        function toggleAdminKeyField() {
+            const role = document.getElementById('reg-role').value;
+            const keyGroup = document.getElementById('reg-admin-key-group');
+            const classGroup = document.getElementById('reg-class-group');
+            const phoneGroup = document.getElementById('reg-phone-group');
+            if (role === 'teacher') {
+                keyGroup.classList.remove('hidden');
+                classGroup.classList.add('hidden');
+                phoneGroup.classList.add('hidden');
+            } else {
+                keyGroup.classList.add('hidden');
+                classGroup.classList.remove('hidden');
+                phoneGroup.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

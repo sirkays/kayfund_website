@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Result | Kayfund International School</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="top-utility">
+            <div class="container top-utility-inner">
+                <span>📍 Opposite MTN Mast, UpZango, Lokoja, Kogi State</span>
+                <span>📞 +234 803 245 7019 &nbsp;|&nbsp; ✉️ info@kayfund.edu.ng</span>
+            </div>
+        </div>
+        <div class="header-main">
+            <a href="index.html" class="brand">
+                <img src="assets/images/logo.png" alt="Kayfund International School Logo" class="brand-logo">
+                <div class="brand-text">
+                    <h1>KAYFUND INTERNATIONAL SCHOOL</h1>
+                    <p>Impacting Lives, Shaping the Future</p>
+                </div>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About Us</a>
+                <a href="academics.html" class="nav-item">Academics</a>
+                <a href="admissions.html" class="nav-item">Admissions</a>
+                <a href="scholarship.html" class="nav-item">Scholarship</a>
+                <a href="results.html" class="nav-item active">Check Result</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+                <a href="login.html" id="nav-portal-cta" class="nav-item nav-cta">Portal Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-banner">
+        <div class="container">
+            <h1>Student Result Checker &amp; Dispatcher</h1>
+            <p>View official terminal report cards online, print PDF copies, or send directly to parent WhatsApp.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="card" style="max-width:760px; margin:0 auto;">
+                <h2>Verify &amp; View Terminal Result</h2>
+                <form onsubmit="directCheckResult(event)">
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="chk-email">Student Email Address</label>
+                            <input type="email" id="chk-email" placeholder="student@kayfund.edu.ng" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="chk-pass">Student Password</label>
+                            <input type="password" id="chk-pass" placeholder="Enter password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-gold btn-block">Check Result</button>
+                </form>
+
+                <div class="demo-box">
+                    <strong>Demo Tip:</strong> Want to preview a sample report card right away?
+                    <div class="demo-box-actions">
+                        <button type="button" class="btn btn-outline-dark" style="padding:8px 14px; font-size:0.82rem;" onclick="document.getElementById('chk-email').value='student@kayfund.edu.ng'; document.getElementById('chk-pass').value='student123';">
+                            Fill Sample Student (Amara Okafor)
+                        </button>
+                    </div>
+                </div>
+
+                <div id="quick-result-view"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img src="assets/images/logo.png" alt="Kayfund Logo">
+                        <h3>Kayfund International School</h3>
+                    </div>
+                    <p>Impacting Lives, Shaping the Future. Dedicated to academic distinction, moral leadership, and modern digital education.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Portals &amp; Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student &amp; Teacher Login</a></li>
+                        <li><a href="results.html">Check Result</a></li>
+                        <li><a href="scholarship.html">Scholarships</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact Info</h4>
+                    <p>Opposite MTN Mast, UpZango, Lokoja, Kogi State</p>
+                    <p>Phone: +234 803 245 7019<br>Email: info@kayfund.edu.ng</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Kayfund International School. All Rights Reserved. | Powered by Kayfund ICT Portal.
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

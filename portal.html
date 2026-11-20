@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Portal | Kayfund International School</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-main">
+            <a href="index.html" class="brand">
+                <img src="assets/images/logo.png" alt="Kayfund International School Logo" class="brand-logo">
+                <div class="brand-text">
+                    <h1>KAYFUND INTERNATIONAL SCHOOL</h1>
+                    <p>Impacting Lives, Shaping the Future</p>
+                </div>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html" class="nav-item">Public Home</a>
+                <a href="academics.html" class="nav-item">Academics</a>
+                <a href="results.html" class="nav-item">Check Result</a>
+                <button type="button" class="nav-item nav-cta" style="border:none; cursor:pointer;" onclick="logoutUser()">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="portal-shell" id="portal-shell">
+            <aside class="portal-sidebar" id="portal-sidebar">
+                <div class="portal-user-badge">
+                    <img src="assets/images/logo.png" alt="Kayfund Crest">
+                    <div>
+                        <div id="portal-user-name" style="font-weight:700; font-size:0.98rem;">Loading...</div>
+                        <div id="portal-user-role" style="font-size:0.78rem; color:var(--gold-bright);">Portal</div>
+                    </div>
+                </div>
+
+                <div class="portal-nav-link active" onclick="showSec('dash', this)">🏠 Dashboard</div>
+                <div class="portal-nav-link" onclick="showSec('cbt', this)">💻 CBT Exam Center</div>
+                <div class="portal-nav-link" onclick="showSec('videos', this)">🎥 Video Lessons</div>
+                <div class="portal-nav-link" onclick="showSec('messages', this)">📬 Message Hub</div>
+                <div class="portal-nav-link" onclick="showSec('records', this)">📊 My Report Card</div>
+                <div id="nav-teacher" class="portal-nav-link hidden" onclick="showSec('teacher-tool', this)" style="color:#fbbf24; border:1px dashed #fbbf24; margin-top:10px;">🛡️ Teacher Admin</div>
+
+                <div class="portal-nav-link" onclick="logoutUser()" style="margin-top:auto; color:#fda4af;">🚪 Logout</div>
+            </aside>
+
+            <main class="portal-content">
+                <div class="portal-mobile-bar">
+                    <span><strong>Kayfund Portal Menu</strong></span>
+                    <button type="button" id="portal-sidebar-toggle" class="btn btn-gold" style="padding:6px 12px; font-size:0.85rem;">☰ Menu</button>
+                </div>
+
+                <!-- DASHBOARD OVERVIEW -->
+                <section id="sec-dash">
+                    <h1 id="user-title" style="margin-bottom:8px;">Welcome</h1>
+                    <p style="color:var(--text-muted); margin-bottom:24px;">Kayfund International School — Integrated Student, Parent &amp; Teacher Portal</p>
+
+                    <div class="grid-3" style="margin-bottom:24px;">
+                        <div class="card">
+                            <div style="font-size:0.85rem; color:var(--text-muted); font-weight:600;" id="stat-subjects-label">Recorded Subjects</div>
+                            <h2 id="stat-subjects" style="font-size:2rem; margin:6px 0 0; color:var(--royal);">0</h2>
+                        </div>
+                        <div class="card">
+                            <div style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">Available Video Lessons</div>
+                            <h2 id="stat-videos" style="font-size:2rem; margin:6px 0 0; color:var(--purple);">0</h2>
+                        </div>
+                        <div class="card">
+                            <div style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">Portal Notices &amp; Messages</div>
+                            <h2 id="stat-messages" style="font-size:2rem; margin:6px 0 0; color:var(--green);">0</h2>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>📢 School Bulletin</h3>
+                        <p>Welcome to the Kayfund International School Portal. Use the sidebar to take timed CBT assessments, watch video lessons, message school administrators, or print and dispatch your terminal report card.</p>
+                    </div>
+                </section>
+
+                <!-- CBT EXAMINATION SECTION -->
+                <section id="sec-cbt" class="hidden">
+                    <h1>Computer-Based Testing (CBT) Center</h1>
+                    <div class="card" id="cbt-start-card">
+                        <h3>Select Examination Subject</h3>
+                        <p><strong>Time Allowed:</strong> 10 Minutes &nbsp;|&nbsp; Instant automated grading &amp; report card sync.</p>
+                        <div class="form-group" style="max-width:400px;">
+                            <label for="cbt-subject-select">Subject</label>
+                            <select id="cbt-subject-select">
+                                <option value="math">General Mathematics (4 Questions)</option>
+                                <option value="english">English &amp; General Studies (3 Questions)</option>
+                                <option value="science">Basic Science &amp; ICT (3 Questions)</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-green" onclick="startCBT()">Start Examination</button>
+                    </div>
+
+                    <div class="card hidden" id="cbt-exam-card">
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:2px solid var(--border); padding-bottom:12px; margin-bottom:18px;">
+                            <h3 id="cbt-q-number" style="margin:0;">Question 1</h3>
+                            <span id="cbt-timer" style="font-weight:700; color:var(--red); font-size:1.05rem;">Time: 10:00</span>
+                        </div>
+                        <p id="cbt-q-text" style="font-size:1.12rem; font-weight:600;"></p>
+                        <div id="cbt-options-container"></div>
+                        <button class="btn btn-gold" style="margin-top:16px;" onclick="nextCBTQuestion()" id="cbt-next-btn">Next Question</button>
+                    </div>
+
+                    <div class="card hidden" id="cbt-result-card">
+                        <h2>Assessment Result Summary</h2>
+                        <h1 id="cbt-score-display" style="color:var(--royal); font-size:3rem; text-align:center; margin:12px 0;">0%</h1>
+                        <p id="cbt-feedback" style="text-align:center; font-size:1.05rem; margin-bottom:20px;"></p>
+                        <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+                            <button class="btn btn-gold" onclick="saveCBTToReport()">Save Score to Report Card</button>
+                            <button class="btn btn-outline-dark" onclick="resetCBT()">Take Another Test</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIDEO LESSONS SECTION -->
+                <section id="sec-videos" class="hidden">
+                    <h1>E-Learning &amp; Video Lessons</h1>
+                    <div id="video-admin-controls" class="card hidden" style="border-top-color:var(--purple); margin-bottom:24px;">
+                        <h3>➕ Upload New Video Lesson (Teacher Admin)</h3>
+                        <div class="grid-2">
+                            <input type="text" id="v-title" placeholder="Lesson Title (e.g. Intro to Algebra)">
+                            <input type="text" id="v-url" placeholder="YouTube Embed URL or Video ID">
+                        </div>
+                        <button class="btn btn-purple" style="margin-top:12px;" onclick="addVideoLesson()">Add Video Lesson</button>
+                    </div>
+                    <div class="grid-2" id="video-grid"></div>
+                </section>
+
+                <!-- MESSAGING SECTION -->
+                <section id="sec-messages" class="hidden">
+                    <h1>School Messaging Center</h1>
+                    <div class="card" style="margin-bottom:24px;">
+                        <h3>Send Communication to Admin</h3>
+                        <div class="form-group">
+                            <textarea id="dash-msg-input" rows="3" placeholder="Type your message or inquiry here..."></textarea>
+                        </div>
+                        <button class="btn btn-gold" onclick="sendDashMessage()">Submit Message</button>
+                    </div>
+                    <div class="card">
+                        <h3>Received Messages &amp; Notices</h3>
+                        <div id="message-container"></div>
+                    </div>
+                </section>
+
+                <!-- REPORT CARD DISPLAY SECTION -->
+                <section id="sec-records" class="hidden">
+                    <div id="report-card-container"></div>
+                    <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:18px;" class="no-print">
+                        <button class="btn" onclick="window.print()">🖨️ Download / Print PDF</button>
+                        <button class="btn btn-whatsapp" onclick="deployCurrentStudentReport()">📲 Deploy Report to Parent WhatsApp</button>
+                    </div>
+                </section>
+
+                <!-- TEACHER ADMIN TOOL SECTION -->
+                <section id="sec-teacher-tool" class="hidden">
+                    <h1>Teacher Control &amp; Administration Center</h1>
+
+                    <div class="card" style="margin-bottom:24px;">
+                        <h3>1. Registered Students Directory</h3>
+                        <div class="table-wrap">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Email</th>
+                                        <th>Parent Phone</th>
+                                        <th>Subjects</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="student-table-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-bottom:24px;">
+                        <h3>2. Record Entry &amp; Parent Deployment</h3>
+                        <div class="form-group">
+                            <label for="student-selector">Select Registered Student</label>
+                            <select id="student-selector"></select>
+                        </div>
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label for="sub-name">Subject Name</label>
+                                <input type="text" id="sub-name" placeholder="e.g. Mathematics">
+                            </div>
+                            <div class="form-group">
+                                <label for="sub-score">Score (0–100)</label>
+                                <input type="number" id="sub-score" min="0" max="100" placeholder="85">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher-comment">Principal / Class Teacher Remark</label>
+                            <textarea id="teacher-comment" rows="2" placeholder="Enter performance remark..."></textarea>
+                        </div>
+                        <div style="display:flex; flex-wrap:wrap; gap:12px;">
+                            <button class="btn btn-purple" onclick="saveGradeAndComment()">Save to Report Card</button>
+                            <button class="btn btn-whatsapp" onclick="deploySelectedStudentReport()">📲 Deploy Report to Parent WhatsApp</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>3. Scholarship Applications</h3>
+                        <div id="scholarship-admin-list"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top:none; padding-top:0;">
+                &copy; 2026 Kayfund International School. All Rights Reserved. | Impacting Lives, Shaping the Future.
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
